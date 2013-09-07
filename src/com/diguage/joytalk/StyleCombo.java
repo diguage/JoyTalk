@@ -55,11 +55,11 @@ public class StyleCombo {
         });
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        StyleCombo panel = new StyleCombo(frame);
-        frame.add(panel.styleCombo);
-        frame.setVisible(true);
-        frame.setSize(200, 100);
-    }
+//    public static void main(String[] args) {
+//        JFrame frame = new JFrame();
+//        StyleCombo panel = new StyleCombo(frame);
+//        frame.add(panel.styleCombo);
+//        frame.setVisible(true);
+//        frame.setSize(200, 100);
+//    }
 }

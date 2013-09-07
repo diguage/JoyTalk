@@ -86,12 +86,12 @@ public class SetPanel extends JPanel {
         this.add(component);
     }
 
-    public static void main(String[] args) {
-        // TODO 自动生成方法存根
-        JFrame frame = new JFrame();
-        JPanel panel = new SetPanel(frame);
-        frame.add(panel);
-        frame.setVisible(true);
-        frame.setSize(280, 90);
-    }
+//    public static void main(String[] args) {
+//        // TODO 自动生成方法存根
+//        JFrame frame = new JFrame();
+//        JPanel panel = new SetPanel(frame);
+//        frame.add(panel);
+//        frame.setVisible(true);
+//        frame.setSize(280, 90);
+//    }
 }

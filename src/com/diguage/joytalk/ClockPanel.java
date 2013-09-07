@@ -190,16 +190,16 @@ public class ClockPanel extends JPanel implements Runnable {
         paint(g);
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        ClockPanel clock = new ClockPanel(75, 60, 40);
-        frame.add(clock, BorderLayout.CENTER);
-
-        //frame.add(button,BorderLayout.SOUTH);
-        frame.setSize(200, 200);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    }
+//    public static void main(String[] args) {
+//        JFrame frame = new JFrame();
+//        ClockPanel clock = new ClockPanel(75, 60, 40);
+//        frame.add(clock, BorderLayout.CENTER);
+//
+//        //frame.add(button,BorderLayout.SOUTH);
+//        frame.setSize(200, 200);
+//        frame.setVisible(true);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//
+//    }
 
 }

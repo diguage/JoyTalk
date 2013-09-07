@@ -96,9 +96,8 @@ public class Leading extends JFrame {
         }
     }
 
-    public static void main(String args[]) {
-        new Leading();
-
-    }
+//    public static void main(String args[]) {
+//        new Leading();
+//    }
 
 }

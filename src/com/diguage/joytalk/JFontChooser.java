@@ -349,14 +349,14 @@ public class JFontChooser extends JPanel implements ActionListener {
         return color;
     }
 
-    public static void main(String[] args) {
-        // 两种,一种是传初始值进去
-        // JFontChooser jfc = new JFontChooser(f,c);
-        // System.out.println(jfc.getFont());
-        // System.out.println(jfc.getColor());
-        // 第二种是没有传初始值进去
-        JFontChooser jfc = new JFontChooser();
-        System.out.println(jfc.getFont());
-        System.out.println(jfc.getColor());
-    }
+//    public static void main(String[] args) {
+//        // 两种,一种是传初始值进去
+//        // JFontChooser jfc = new JFontChooser(f,c);
+//        // System.out.println(jfc.getFont());
+//        // System.out.println(jfc.getColor());
+//        // 第二种是没有传初始值进去
+//        JFontChooser jfc = new JFontChooser();
+//        System.out.println(jfc.getFont());
+//        System.out.println(jfc.getColor());
+//    }
 }

@@ -180,8 +180,8 @@ public class RegisterFrame extends JFrame implements ActionListener {
         container.add(component);
     }
 
-    public static void main(String args[]) {
-        RegisterFrame application = new RegisterFrame();
-        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+//    public static void main(String args[]) {
+//        RegisterFrame application = new RegisterFrame();
+//        application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    }
 } // end class GridBagDemo

@@ -166,13 +166,13 @@ public class MusicPlayer extends JPanel implements FilenameFilter,
         this.add(component);
     }
 
-    public static void main(String args[]) {
-        JFrame frame = new JFrame();
-        frame.setLayout(new BorderLayout());
-        MusicPlayer player = new MusicPlayer(frame);
-        frame.add(player);
-        frame.setSize(180, 120);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+//    public static void main(String args[]) {
+//        JFrame frame = new JFrame();
+//        frame.setLayout(new BorderLayout());
+//        MusicPlayer player = new MusicPlayer(frame);
+//        frame.add(player);
+//        frame.setSize(180, 120);
+//        frame.setVisible(true);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    }
 }
