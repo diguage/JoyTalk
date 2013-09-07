@@ -1,15 +1,20 @@
+package com.diguage.joytalk;
+
 /**
- * @author 李君 2008-6-16 13:39:56 Blog:http://hi.baidu.com/joxiao
+ * @author D瓜哥，http://www.diguage.com/
+ *
+ * Date: 2008-6-16 13:39:56
  */
+
 import sun.audio.*;
+
 import java.awt.*;
 import java.io.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class MusicPlayer extends JPanel implements FilenameFilter,
-        ActionListener
-{
+        ActionListener {
     private GridBagLayout layout;
 
     private GridBagConstraints constraints;
@@ -32,8 +37,7 @@ public class MusicPlayer extends JPanel implements FilenameFilter,
 
     JFrame frame;
 
-    public MusicPlayer(JFrame frame)
-    {
+    public MusicPlayer(JFrame frame) {
         this.frame = frame;
         layout = new GridBagLayout();
         this.setLayout(layout);
@@ -61,7 +65,7 @@ public class MusicPlayer extends JPanel implements FilenameFilter,
         this.addComponent(loopButton, 1, 3, 1, 2);
         constraints.fill = GridBagConstraints.BOTH;
         this.addComponent(openButton, 3, 0, 4, 1);
-		/*
+        /*
          * this.add(musicNameLabel, BorderLayout.NORTH); this.add(playButton,
          * BorderLayout.CENTER); this.add(stopButton, BorderLayout.WEST);
          * this.add(loopButton, BorderLayout.EAST); this.add(openButton,
@@ -76,40 +80,31 @@ public class MusicPlayer extends JPanel implements FilenameFilter,
     }
 
     // 打开文件
-    public void open()
-    {
+    public void open() {
         FileDialog fd = new FileDialog(this.frame, "please select a file");
         fd.setFilenameFilter(this);
         fd.setVisible(true);
-        try
-        {
+        try {
             theFile = new File(fd.getDirectory() + "/" + fd.getFile());
-            if(theFile != null)
-            {
+            if (theFile != null) {
                 musicNameLabel.setText("音乐: " + theFile.getName());
                 FileInputStream fis = new FileInputStream(theFile);
                 AudioStream as = new AudioStream(fis);
                 theData = as.getData();
             }
-        }
-        catch(IOException e)
-        {
+        } catch (IOException e) {
             System.err.println(e);
-        }
-        catch(SecurityException e)
-        {
+        } catch (SecurityException e) {
             System.out.println("security exception");
         }
     }
 
     // 开始播放
-    public void play()
-    {
+    public void play() {
         stop();
-        if(theData == null)
+        if (theData == null)
             open();
-        if(theData != null)
-        {
+        if (theData != null) {
             AudioDataStream ads = new AudioDataStream(theData);
             AudioPlayer.player.start(ads);
             nowPlaying = ads;
@@ -117,23 +112,19 @@ public class MusicPlayer extends JPanel implements FilenameFilter,
     }
 
     // 停止播放
-    public void stop()
-    {
-        if(nowPlaying != null)
-        {
+    public void stop() {
+        if (nowPlaying != null) {
             AudioPlayer.player.stop(nowPlaying);
             nowPlaying = null;
         }
     }
 
     // 循环播放
-    public void loop()
-    {
+    public void loop() {
         stop();
-        if(theData == null)
+        if (theData == null)
             open();
-        if(theData != null)
-        {
+        if (theData != null) {
             ContinuousAudioDataStream cads = new ContinuousAudioDataStream(
                     theData);
             AudioPlayer.player.start(cads);
@@ -142,35 +133,28 @@ public class MusicPlayer extends JPanel implements FilenameFilter,
     }
 
     // 事件响应
-    public void actionPerformed(ActionEvent e)
-    {
-        if(e.getSource() == playButton)
-        {
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == playButton) {
             play();
         }
-        if(e.getSource() == openButton)
-        {
+        if (e.getSource() == openButton) {
             open();
         }
-        if(e.getSource() == loopButton)
-        {
+        if (e.getSource() == loopButton) {
             loop();
         }
-        if(e.getSource() == stopButton)
-        {
+        if (e.getSource() == stopButton) {
             stop();
         }
     }
 
-    public boolean accept(File dir, String name)
-    {
+    public boolean accept(File dir, String name) {
         return true;
     }
 
     // method to set constraints on
     private void addComponent(Component component, int row, int column,
-                              int width, int height)
-    {
+                              int width, int height) {
         // set gridx and gridy
         constraints.gridx = column;
         constraints.gridy = row;
@@ -182,8 +166,7 @@ public class MusicPlayer extends JPanel implements FilenameFilter,
         this.add(component);
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         JFrame frame = new JFrame();
         frame.setLayout(new BorderLayout());
         MusicPlayer player = new MusicPlayer(frame);

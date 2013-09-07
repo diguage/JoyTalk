@@ -1,33 +1,24 @@
+package com.diguage.joytalk;
+
 /**
- * @author 李君 2008-6-20 8:30:08 Blog:http://hi.baidu.com/joxiao
- *         JFontChooser.java Created on 2007年9月3日, 下午4:56 To change this
- *         template, choose Tools | Template Manager and open the template in
- *         the editor.
+ * @author D瓜哥，http://www.diguage.com/
+ *
+ * Date: 2008-6-20 8:30:08
+ *
+ *JFontChooser.java Created on 2007年9月3日, 下午4:56 To change this
+ *template, choose Tools | Template Manager and open the template in
+ *the editor.
+ *
  */
-import java.awt.event.ActionListener;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+
+import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class JFontChooser extends JPanel implements ActionListener
-{
+public class JFontChooser extends JPanel implements ActionListener {
     /**
      * 字体选择器构造方法（可以传Font与Color的初始值，也可以是空构造函数，结果返回根据getFont与getColor得到相应的设置
      *
@@ -61,16 +52,16 @@ public class JFontChooser extends JPanel implements ActionListener
 
     private String[] jfontStr = ge.getAvailableFontFamilyNames();
 
-    private String[] fontStyle = { "常规", "斜体", "粗体", "粗斜体" };
+    private String[] fontStyle = {"常规", "斜体", "粗体", "粗斜体"};
 
-    private String[] fontSize = { "8", "9", "10", "11", "12", "14", "16", "18",
+    private String[] fontSize = {"8", "9", "10", "11", "12", "14", "16", "18",
             "20", "22", "24", "26", "28", "36", "48", "72", "初号", "小初", "一号",
             "小一", "二号", "小二", "三号", "小三", "四号", "小四", "五号", "小五", "六号", "小六",
-            "七号", "八号" };
+            "七号", "八号"};
 
-    private int[] sizeValue = { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26,
+    private int[] sizeValue = {8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26,
             28, 36, 48, 72, 42, 36, 26, 24, 22, 18, 16, 15, 14, 12, 11, 9, 7,
-            6, 5, 4 };
+            6, 5, 4};
 
     private JButton okButton = new JButton("确定");
 
@@ -82,19 +73,20 @@ public class JFontChooser extends JPanel implements ActionListener
     private JCheckBox jcDownLine = new JCheckBox("下划线(U)");
 
     // 颜色
-    private Object[] colorName = { "黑色", "蓝色", "青色", "深灰色", "灰色", "绿色", "浅灰色",
-            "洋红色", "桔黄色", "粉红色", "红色", "白色", "黄色" };
+    private Object[] colorName = {"黑色", "蓝色", "青色", "深灰色", "灰色", "绿色", "浅灰色",
+            "洋红色", "桔黄色", "粉红色", "红色", "白色", "黄色"};
 
-    private Color[] colorValue = { Color.BLACK, Color.BLUE, Color.CYAN,
+    private Color[] colorValue = {Color.BLACK, Color.BLUE, Color.CYAN,
             Color.DARK_GRAY, Color.GRAY, Color.GREEN, Color.LIGHT_GRAY,
             Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.WHITE,
-            Color.YELLOW };
+            Color.YELLOW};
 
     private JComboBox jComboBox = new JComboBox(colorName);
 
-    /** Creates a new instance of JFontChooser */
-    public JFontChooser()
-    {
+    /**
+     * Creates a new instance of JFontChooser
+     */
+    public JFontChooser() {
         initJFont();
         initJFontStyle();
         initJFontSize();
@@ -103,8 +95,7 @@ public class JFontChooser extends JPanel implements ActionListener
         initJDialog();
     }
 
-    public JFontChooser(Font f, Color c)
-    { // 根据传进来的字体与颜色进行设置
+    public JFontChooser(Font f, Color c) { // 根据传进来的字体与颜色进行设置
         initJFont();
         initJFontStyle();
         initJFontSize();
@@ -116,8 +107,7 @@ public class JFontChooser extends JPanel implements ActionListener
         initJDialog();
     }
 
-    private void initOther()
-    {
+    private void initOther() {
         // 默认颜色与字体
         updateFont();// 设置一下默认字体与颜色
         // 效果与示例
@@ -137,7 +127,7 @@ public class JFontChooser extends JPanel implements ActionListener
         this.add(okButton);
         this.add(cancelButton);
         // 示例
-        showJLabel.setText((String)jlFont.getSelectedValue());
+        showJLabel.setText((String) jlFont.getSelectedValue());
         showJLabel.setHorizontalAlignment(JLabel.CENTER);
         showJLabel.setBounds(180, 150, 200, 150);
         this.add(showJLabel);
@@ -161,15 +151,11 @@ public class JFontChooser extends JPanel implements ActionListener
         this.add(instructionJLabel);
     }
 
-    private void initComponentUpdate()
-    {
-        try
-        {
+    private void initComponentUpdate() {
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             SwingUtilities.updateComponentTreeUI(this);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -177,20 +163,16 @@ public class JFontChooser extends JPanel implements ActionListener
     /**
      * 根据传进来的font与color进行设置字体与颜色
      */
-    private void setFontAndColor(Font f, Color c)
-    {
+    private void setFontAndColor(Font f, Color c) {
         String fontStr = f.getFamily();
         int style = f.getStyle();
         int size = f.getSize();
-        for(int i = 0; i < jfontStr.length; i++)
-        {
-            if(jfontStr.equals(fontStr))
-            {
+        for (int i = 0; i < jfontStr.length; i++) {
+            if (jfontStr.equals(fontStr)) {
                 jlFont.setSelectedIndex(i);
             }
         }
-        switch(style)
-        {
+        switch (style) {
             case Font.PLAIN:
                 jlFontStyle.setSelectedIndex(0);
                 break;
@@ -204,17 +186,13 @@ public class JFontChooser extends JPanel implements ActionListener
                 jlFontStyle.setSelectedIndex(3);
                 break;
         }
-        for(int i = 0; i < sizeValue.length; i++)
-        {
-            if(sizeValue[i] == size)
-            {
+        for (int i = 0; i < sizeValue.length; i++) {
+            if (sizeValue[i] == size) {
                 jlFontSize.setSelectedIndex(i);
             }
         }
-        for(int i = 0; i < colorValue.length; i++)
-        {
-            if(colorValue.equals(c))
-            {
+        for (int i = 0; i < colorValue.length; i++) {
+            if (colorValue.equals(c)) {
                 jComboBox.setSelectedIndex(i);
             }
         }
@@ -224,50 +202,33 @@ public class JFontChooser extends JPanel implements ActionListener
     /**
      * 示例中改变showJLabel的字体样式
      */
-    private Font updateFont()
-    {
-        String fontStr = (String)jlFont.getSelectedValue();
-        String styleStr = (String)jlFontStyle.getSelectedValue();
+    private Font updateFont() {
+        String fontStr = (String) jlFont.getSelectedValue();
+        String styleStr = (String) jlFontStyle.getSelectedValue();
         int style;
         int size = sizeValue[jlFontSize.getSelectedIndex()];
-        if(styleStr.equals("常规"))
-        {
+        if (styleStr.equals("常规")) {
             style = Font.PLAIN;
-        }
-        else if(styleStr.equals("斜体"))
-        {
+        } else if (styleStr.equals("斜体")) {
             style = Font.ITALIC;
-        }
-        else if(styleStr.equals("粗体"))
-        {
+        } else if (styleStr.equals("粗体")) {
             style = Font.BOLD;
-        }
-        else
-        {
+        } else {
             style = Font.ITALIC | Font.BOLD;
         }
         Font f = new Font(fontStr, style, size);
         // 删除线与下划线
-        String temp = (String)jlFont.getSelectedValue();
-        if(jcDelLine.isSelected())
-        {
-            if(jcDownLine.isSelected())
-            {
+        String temp = (String) jlFont.getSelectedValue();
+        if (jcDelLine.isSelected()) {
+            if (jcDownLine.isSelected()) {
                 showJLabel.setText("<html><s><u>" + temp + "</u></s><html>");
-            }
-            else if(!jcDownLine.isSelected())
-            {
+            } else if (!jcDownLine.isSelected()) {
                 showJLabel.setText("<html><s>" + temp + "</s><html>");
             }
-        }
-        else if(!jcDelLine.isSelected())
-        {
-            if(jcDownLine.isSelected())
-            {
+        } else if (!jcDelLine.isSelected()) {
+            if (jcDownLine.isSelected()) {
                 showJLabel.setText("<html><u>" + temp + "</u><html>");
-            }
-            else if(!jcDownLine.isSelected())
-            {
+            } else if (!jcDownLine.isSelected()) {
                 showJLabel.setText(temp);
             }
         }
@@ -280,17 +241,14 @@ public class JFontChooser extends JPanel implements ActionListener
     /**
      * 初始化jfont 字体
      */
-    private void initJFont()
-    {
+    private void initJFont() {
         jlFont = new JList(jfontStr);
         jlFont.setSelectedIndex(0);
-        jtFont.setText((String)jlFont.getSelectedValue());
+        jtFont.setText((String) jlFont.getSelectedValue());
         JScrollPane jsp = new JScrollPane(jlFont);
-        jlFont.addListSelectionListener(new ListSelectionListener()
-        {
-            public void valueChanged(ListSelectionEvent e)
-            {
-                jtFont.setText((String)jlFont.getSelectedValue());
+        jlFont.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                jtFont.setText((String) jlFont.getSelectedValue());
                 showJLabel.setFont(updateFont());
             }
         });
@@ -306,16 +264,13 @@ public class JFontChooser extends JPanel implements ActionListener
     /**
      * 初始化字体样式
      */
-    private void initJFontStyle()
-    {
+    private void initJFontStyle() {
         jlFontStyle = new JList(fontStyle);
         jlFontStyle.setSelectedIndex(0);
-        jtFontStyle.setText((String)jlFontStyle.getSelectedValue());
-        jlFontStyle.addListSelectionListener(new ListSelectionListener()
-        {
-            public void valueChanged(ListSelectionEvent e)
-            {
-                jtFontStyle.setText((String)jlFontStyle.getSelectedValue());
+        jtFontStyle.setText((String) jlFontStyle.getSelectedValue());
+        jlFontStyle.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                jtFontStyle.setText((String) jlFontStyle.getSelectedValue());
                 showJLabel.setFont(updateFont());
             }
         });
@@ -331,16 +286,13 @@ public class JFontChooser extends JPanel implements ActionListener
     /**
      * 初始化字体大小
      */
-    private void initJFontSize()
-    {
+    private void initJFontSize() {
         jlFontSize = new JList(fontSize);
         jlFontSize.setSelectedIndex(0);
-        jtFontSize.setText((String)jlFontSize.getSelectedValue());
-        jlFontSize.addListSelectionListener(new ListSelectionListener()
-        {
-            public void valueChanged(ListSelectionEvent e)
-            {
-                jtFontSize.setText((String)jlFontSize.getSelectedValue());
+        jtFontSize.setText((String) jlFontSize.getSelectedValue());
+        jlFontSize.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                jtFontSize.setText((String) jlFontSize.getSelectedValue());
                 showJLabel.setFont(updateFont());
             }
         });
@@ -357,8 +309,7 @@ public class JFontChooser extends JPanel implements ActionListener
     /**
      * 初始化JDialog
      */
-    private void initJDialog()
-    {
+    private void initJDialog() {
         this.setLayout(null);
         jDialog = new JDialog();
         jDialog.setResizable(false);
@@ -371,47 +322,34 @@ public class JFontChooser extends JPanel implements ActionListener
         jDialog.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e)
-    {
-        if(e.getSource() == okButton)
-        {
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == okButton) {
             // 返回字体
             font = this.updateFont();
             int select = jComboBox.getSelectedIndex();
             showJLabel.setForeground(colorValue[select]);
             color = colorValue[select];
             jDialog.dispose();
-        }
-        else if(e.getSource() == cancelButton)
-        {
+        } else if (e.getSource() == cancelButton) {
             jDialog.dispose();
-        }
-        else if(e.getSource() == jcDelLine)
-        {
+        } else if (e.getSource() == jcDelLine) {
             this.updateFont();
-        }
-        else if(e.getSource() == jcDownLine)
-        {
+        } else if (e.getSource() == jcDownLine) {
             this.updateFont();
-        }
-        else if(e.getSource() == jComboBox)
-        { // 颜色选择
+        } else if (e.getSource() == jComboBox) { // 颜色选择
             this.updateFont();
         }
     }
 
-    public Font getFont()
-    {
+    public Font getFont() {
         return font;
     }
 
-    public Color getColor()
-    {
+    public Color getColor() {
         return color;
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // 两种,一种是传初始值进去
         // JFontChooser jfc = new JFontChooser(f,c);
         // System.out.println(jfc.getFont());

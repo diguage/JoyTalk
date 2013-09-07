@@ -1,36 +1,36 @@
+package com.diguage.joytalk;
+
+/**
+ * @author D瓜哥，http://www.diguage.com/
+ *
+ * Date: 2008-6
+ */
 
 
-
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
-import java.util.Date;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Leading extends JFrame
-{
-    private JLabel	   label1, label2;
-    private JButton	  button;
+public class Leading extends JFrame {
+    private JLabel label1, label2;
+    private JButton button;
     private JProgressBar progressBar;
-    int				  progressNumber;
+    int progressNumber;
     JPanel progressPanel;
 
-    public Leading()
-    {
+    public Leading() {
         setTitle("正在登录");
 
         progressPanel = new JPanel();
-        progressPanel.setLayout(new BoxLayout(progressPanel,BoxLayout.Y_AXIS ));
+        progressPanel.setLayout(new BoxLayout(progressPanel, BoxLayout.Y_AXIS));
 
 
         setIconImage(new ImageIcon("Image/QQ.gif").getImage());
-        try
-        {
+        try {
             UIManager.setLookAndFeel(UIManager
                     .getSystemLookAndFeelClassName());
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         final Timer timer = new Timer(1000, new TimerActionListener());
@@ -63,10 +63,8 @@ public class Leading extends JFrame
         progressPanel.add(progressBar);
         progressPanel.add(button);
         //	button.setBounds(50, 280, 100, 25);
-        button.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent event)
-            {
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
                 dispose();
                 timer.stop();
                 new LogInFrame();
@@ -79,29 +77,26 @@ public class Leading extends JFrame
         setBounds(750, 20, 220, 550);
         this.add(progressPanel);
 
-        this.setSize(220,660);
+        this.setSize(220, 660);
         // this.setLocationRelativeTo(null); // 设为null，
         // 将窗口置于屏幕的中央
         setResizable(false);
         setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-    private class TimerActionListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e)
-        {
+
+    private class TimerActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
             progressNumber += 10;
             progressBar.setValue(progressNumber);
-            if(progressNumber == 100)
-            {
+            if (progressNumber == 100) {
                 dispose();
                 new TalkingFrame();
             }
         }
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         new Leading();
 
     }

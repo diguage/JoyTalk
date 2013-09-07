@@ -1,12 +1,17 @@
-/**
- * @author 李君 2008-6-17 9:12:24 Blog:http://hi.baidu.com/joxiao
- */
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+package com.diguage.joytalk;
 
-public class SetPanel extends JPanel
-{
+/**
+ * @author D瓜哥，http://www.diguage.com/
+ *
+ * Date: 2008-6-17 9:12:24
+ */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class SetPanel extends JPanel {
     private GridBagLayout layout;
 
     private GridBagConstraints constraints;
@@ -31,8 +36,7 @@ public class SetPanel extends JPanel
 
     StyleCombo styleCombo;
 
-    public SetPanel(Frame frame)
-    {
+    public SetPanel(Frame frame) {
         this.frame = frame;
         layout = new GridBagLayout();
         this.setLayout(layout);
@@ -57,11 +61,9 @@ public class SetPanel extends JPanel
         // randomButton.setText("随机生成");
         constraints.fill = GridBagConstraints.NONE;
         addComponent(randomButton, 0, 3, 1, 1);
-        randomButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                Integer iSort = new Integer((int)(Math.random() * 65536));
+        randomButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                Integer iSort = new Integer((int) (Math.random() * 65536));
                 sortField.setText(iSort.toString());
             }
         });
@@ -72,8 +74,7 @@ public class SetPanel extends JPanel
 
     // method to set constraints on
     private void addComponent(Component component, int row, int column,
-                              int width, int height)
-    {
+                              int width, int height) {
         // set gridx and gridy
         constraints.gridx = column;
         constraints.gridy = row;
@@ -85,8 +86,7 @@ public class SetPanel extends JPanel
         this.add(component);
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         // TODO 自动生成方法存根
         JFrame frame = new JFrame();
         JPanel panel = new SetPanel(frame);

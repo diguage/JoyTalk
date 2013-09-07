@@ -1,12 +1,17 @@
+package com.diguage.joytalk;
+
 /**
- * @author 李君 2008-6-16 22:52:17 Blog:http://hi.baidu.com/joxiao
+ * @author D瓜哥，http://www.diguage.com/
+ *
+ * Date: 2008-6-16 22:52:17
  */
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LogInFrame extends JFrame
-{
+public class LogInFrame extends JFrame {
     private Container container;
 
     private GridBagLayout layout;
@@ -56,8 +61,7 @@ public class LogInFrame extends JFrame
     boolean openSetPanel = false;
 
     // set up GUI
-    public LogInFrame()
-    {
+    public LogInFrame() {
         super("JoyTalk-欢迎您！");
         frame = this;
         container = getContentPane();
@@ -120,8 +124,7 @@ public class LogInFrame extends JFrame
 
     // method to set constraints on
     private void addComponent(Component component, int row, int column,
-                              int width, int height)
-    {
+                              int width, int height) {
         // set gridx and gridy
         constraints.gridx = column;
         constraints.gridy = row;
@@ -133,44 +136,32 @@ public class LogInFrame extends JFrame
         container.add(component);
     }
 
-    private class ActionHandler implements ActionListener
-    {
-        public void actionPerformed(ActionEvent event)
-        {
-            if(event.getSource() == logInButton)
-            {
+    private class ActionHandler implements ActionListener {
+        public void actionPerformed(ActionEvent event) {
+            if (event.getSource() == logInButton) {
                 new TalkingFrame();
-            }
-            else if(event.getSource() == registerButton)
-            {
+            } else if (event.getSource() == registerButton) {
                 dispose();
                 // System.exit(0); //为什么不 能用这个呢？？
                 new RegisterFrame();
-            }
-            else if(event.getSource() == forgetButton)
+            } else if (event.getSource() == forgetButton)
                 JOptionPane.showMessageDialog(null, event.getSource()
                         .getClass()
                         + "忘记");
-            else if(event.getSource() == quitButton)
-            {
+            else if (event.getSource() == quitButton) {
                 int i = JOptionPane.showConfirmDialog(null, "你确定退出吗？", "退出",
                         JOptionPane.OK_CANCEL_OPTION);
-                if(i == JOptionPane.YES_NO_OPTION)
+                if (i == JOptionPane.YES_NO_OPTION)
                     System.exit(0);
-            }
-            else
-            {
-                if(!openSetPanel)
-                {
+            } else {
+                if (!openSetPanel) {
                     addComponent(setPanel, baseY + 3, baseX - 2, 5, 2);
                     setSize(280, 228);
-					/*
+                    /*
                      * if(setPanel.styleCombo.styleCombo.getSelectedItem().equals(setPanel.styleCombo.styleCombo.getItemAt(1)))
                      * setSize(300,235);
                      */
-                }
-                else
-                {
+                } else {
                     remove(setPanel);
                     setSize(280, 173);
                 }
@@ -182,32 +173,25 @@ public class LogInFrame extends JFrame
     // 此方法是添加系统托盘图片！
     // 并非我自创！
     // 是从《Java JDK6 学习笔记》从学习来的！
-    public void addTray()
-    {
-        if(SystemTray.isSupported()) // isSuported()测试系统是否支持系统工具栏图标
+    public void addTray() {
+        if (SystemTray.isSupported()) // isSuported()测试系统是否支持系统工具栏图标
         {
             SystemTray tray = SystemTray.getSystemTray();
             Image image = Toolkit.getDefaultToolkit().getImage(
                     "images/tray3.gif");
             TrayIcon trayIcon = new TrayIcon(image, "JoyTalk");
-            try
-            {
+            try {
                 tray.add(trayIcon);
-            }
-            catch(AWTException e)
-            {
+            } catch (AWTException e) {
                 System.err.println("无法加入系统工具栏图标");
                 e.printStackTrace();
             }
-        }
-        else
-        {
+        } else {
             System.err.println("无法取得系统工具栏");
         }
     }
 
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         // LogInFrame logIn =
         new LogInFrame();
     }

@@ -1,13 +1,20 @@
-/**
- * @author 李君 2008-5-17 23:34:44 Blog:http://hi.baidu.com/joxiao
- */
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
+package com.diguage.joytalk;
 
-public class TalkingFrame extends JFrame
-{
+/**
+ * @author D瓜哥，http://www.diguage.com/
+ *
+ * Date: 2008-5-17 23:34:44
+ */
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Date;
+
+public class TalkingFrame extends JFrame {
     JTabbedPane tabbedPane;
 
     JPanel talkPanel;
@@ -44,8 +51,7 @@ public class TalkingFrame extends JFrame
 
     String sendTip; // 输入框提示信息
 
-    public TalkingFrame()
-    {
+    public TalkingFrame() {
         frame = this;
         this.setVisible(true);
         this.setIconImage(new ImageIcon("images/logo.ico").getImage());
@@ -54,8 +60,7 @@ public class TalkingFrame extends JFrame
         talkPanel = new JPanel();
         talkPanel.setLayout(new FlowLayout());
         JButton talkButton[] = new JButton[6];
-        for(int i = 1; i <= 6; i++)
-        {
+        for (int i = 1; i <= 6; i++) {
             talkButton[i - 1] = new JButton(new ImageIcon("images/1" + i
                     + ".jpg"));
             talkButton[i - 1].setBounds(new Rectangle(new Dimension(25, 26)));
@@ -66,8 +71,7 @@ public class TalkingFrame extends JFrame
         playPanel = new JPanel();
         playPanel.setLayout(new FlowLayout());
         JButton playButton[] = new JButton[6];
-        for(int i = 1; i <= 6; i++)
-        {
+        for (int i = 1; i <= 6; i++) {
             playButton[i - 1] = new JButton(new ImageIcon("images/2" + i
                     + ".jpg"));
             playPanel.add(playButton[i - 1]);
@@ -76,8 +80,7 @@ public class TalkingFrame extends JFrame
         usePanel = new JPanel();
         usePanel.setLayout(new FlowLayout());
         JButton useButton[] = new JButton[4];
-        for(int i = 1; i <= 4; i++)
-        {
+        for (int i = 1; i <= 4; i++) {
             useButton[i - 1] = new JButton(new ImageIcon("images/3" + i
                     + ".jpg"));
             usePanel.add(useButton[i - 1]);
@@ -86,8 +89,7 @@ public class TalkingFrame extends JFrame
         toolPanel = new JPanel();
         toolPanel.setLayout(new FlowLayout());
         JButton toolButton[] = new JButton[3];
-        for(int i = 1; i <= 3; i++)
-        {
+        for (int i = 1; i <= 3; i++) {
             toolButton[i - 1] = new JButton(new ImageIcon("images/4" + i
                     + ".jpg"));
             toolPanel.add(toolButton[i - 1]);
@@ -109,18 +111,15 @@ public class TalkingFrame extends JFrame
         toolBar.setFloatable(false);
         toolBar.setLayout(new BoxLayout(toolBar, BoxLayout.X_AXIS));
         JButton barButton[] = new JButton[10];
-        for(int i = 1; i <= 10; i++)
-        {
+        for (int i = 1; i <= 10; i++) {
             barButton[i - 1] = new JButton(new ImageIcon("images/6" + i
                     + ".jpg"));
             toolBar.add(barButton[i - 1]);
         }
         styleCombo = new StyleCombo(this);
         toolBar.add(styleCombo.styleCombo);
-        barButton[0].addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent event)
-            {
+        barButton[0].addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
                 JFontChooser fontChooser = new JFontChooser();
                 Font font = fontChooser.getFont();
                 acceptArea.setFont(font);
@@ -132,16 +131,12 @@ public class TalkingFrame extends JFrame
         sendArea = new JTextArea(sendTip, 4, 15);
         sendArea.setLineWrap(true);
         // 捕捉点击首次在输入框的点击事件，清除输入提示信息！
-        sendArea.addMouseListener(new MouseAdapter()
-        {
+        sendArea.addMouseListener(new MouseAdapter() {
             boolean cleared = false;
 
-            public void mouseClicked(MouseEvent e)
-            {
-                if(!cleared)
-                {
-                    if(sendArea.getText() != sendTip)
-                    {
+            public void mouseClicked(MouseEvent e) {
+                if (!cleared) {
+                    if (sendArea.getText() != sendTip) {
                         sendArea.setText(null);
                         cleared = !cleared;
                     }
@@ -158,12 +153,10 @@ public class TalkingFrame extends JFrame
         footPanel.add(Box.createHorizontalGlue());
         footPanel.add(Box.createRigidArea(new Dimension(160, 0)));
         clearButton = new JButton("清空"); // 点击“清空”，清空输入框
-        clearButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
+        clearButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
                 sendArea.setText(null);
-				/*
+                /*
                  * setVisible(false); setSize(0,0);
                  */
             }
@@ -171,14 +164,12 @@ public class TalkingFrame extends JFrame
         footPanel.add(clearButton);
         footPanel.add(Box.createRigidArea(new Dimension(1, 0)));
         concelButton = new JButton("退出"); // 点击“退出”，显示确认对话框，点击“确定”，退出!
-        concelButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
+        concelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
                 // dispose(); //使用这个方法似乎不是真正退出，为什么？？
                 int i = JOptionPane.showConfirmDialog(null, "你确定退出吗？", "退出",
                         JOptionPane.OK_CANCEL_OPTION);
-                if(i == JOptionPane.YES_NO_OPTION)
+                if (i == JOptionPane.YES_NO_OPTION)
                     System.exit(0);
             }
         });
@@ -186,11 +177,9 @@ public class TalkingFrame extends JFrame
         // stringBuffer = new StringBuffer(10);
         footPanel.add(Box.createRigidArea(new Dimension(1, 0)));
         sendButton = new JButton("发送"); // 点击发送，将输入框的信息发送过去！
-        sendButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent arg0)
-            {
-                if(!(sendArea.getText() == null)) // 如何设置条件，使其在信息为空时不能发送？？
+        sendButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+                if (!(sendArea.getText() == null)) // 如何设置条件，使其在信息为空时不能发送？？
                 {
                     // stringBuffer.append(sendArea.getText()
                     // + "\n\n");
